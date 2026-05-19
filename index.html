@@ -60,13 +60,13 @@
             </a>
         </p>
 
-        <h3>CATEGORÍAS</h3>
+        <h3>INFORMACION</h3>
 
         <ul>
-            <li onclick="filtrar('inicio')">Inicio</li>
-            <li onclick="filtrar('promocion')">Promoción</li>
-            <li onclick="filtrar('plantas')">Plantas Interior</li>
-            <li onclick="filtrar('mantenimiento')">Mantenimiento</li>
+            <li onclick="mostrarInfo('nosotros')">Nosotros</li>
+            <li onclick="mostrarInfo('preguntas')">Preguntas Frecuentes</li>
+            <li onclick="mostrarInfo('garantia')">garantia y Asesoramiento</li>
+            
         </ul>
 
     </aside>
@@ -84,6 +84,7 @@
             <!-- MENU -->
             <nav class="menu">
 
+                
                 <button class="btn active"
                 onclick="filtrar('inicio',this)">
                     INICIO
@@ -256,6 +257,115 @@
 
             </section>
 
+            <!-- colocar aca Informacion Eco Ortiz -->
+           
+                <!-- =========================================
+                    INFORMACION
+                ========================================= -->
+
+                <!-- NOSOTROS -->
+                <section id="nosotros" class="info-seccion" style="display:none;">
+
+                    <div class="info-container">
+
+                        <div class="info-texto">
+
+                            <h3>Nosotros</h3>
+
+                            <h2>Nuestra Misión</h2>
+
+                            <p>
+                                Ser un estudio de paisajismo que crea jardines,
+                                terrazas y espacios urbanos que conectan con la
+                                naturaleza, cuidando cada detalle con diseño sensible,
+                                sostenibilidad y bienestar para quienes los habitan.
+                            </p>
+
+                            <h3>Nuestra Visión</h3>
+
+                            <p>
+                                Transformar la manera en que vivimos el verde:
+                                crear espacios vivos, funcionales y bellos que
+                                inspiren a cuidar la tierra, respirar mejor y
+                                reconectar con el ritmo natural, en hogares,
+                                ciudades y empresas.
+                            </p>
+
+                        </div>
+
+                        <div class="info-imagen">
+                            <img src="images/mantenimiento3.png" alt="">
+                        </div>
+
+                    </div>
+
+                </section>
+
+                <!-- PREGUNTAS -->
+                <section id="preguntas" class="info-seccion" style="display:none;">
+
+                    <h2>Preguntas Frecuentes</h2>
+
+                    <div class="faq">
+
+                        <div class="faq-item">
+                            <h3>¿Cada cuánto tiempo se riega una planta de interior?</h3>
+
+                            <p>
+                                Depende del tipo de planta, clima y tamaño de maceta.
+                                Generalmente se recomienda revisar la humedad de la tierra
+                                2 a 3 veces por semana y evitar el exceso de agua.
+                            </p>
+                        </div>
+
+                        <div class="faq-item">
+                            <h3>¿Cada cuánto tiempo se realiza una fumigación al jardín?</h3>
+
+                            <p>
+                                Normalmente se recomienda cada 30 o 45 días,
+                                dependiendo de la presencia de plagas, humedad
+                                y estación del año.
+                            </p>
+                        </div>
+
+                        <div class="faq-item">
+                            <h3>¿Qué tipos de abonos se usan para las plantas de agua?</h3>
+
+                            <p>
+                                Se utilizan fertilizantes líquidos ricos en minerales,
+                                nutrientes orgánicos y abonos especiales para plantas
+                                acuáticas que favorecen el crecimiento saludable.
+                            </p>
+                        </div>
+
+                    </div>
+
+                </section>
+
+                <!-- GARANTIA -->
+                <section id="garantia" class="info-seccion" style="display:none;">
+
+                    <h2>Garantía y Asesoramiento</h2>
+
+                    <div class="garantia-box">
+
+                        <p>
+                            Ofrecemos garantías de hasta por un mes después de
+                            realizado el mantenimiento.
+                        </p>
+
+                        <p>
+                            Además, el asesoramiento es permanente para ayudarte
+                            con el cuidado, mantenimiento y crecimiento saludable
+                            de tus plantas y jardines.
+                        </p>
+
+                    </div>
+
+                </section>
+
+            <!-- Fin Informacion Eco Ortiz -->
+
              <div id="detalle" style="display:none;">
 
                 <div class="detalle-container">
@@ -271,7 +381,7 @@
                         <i class="fab fa-whatsapp"></i> Enviar un mensaje por WhatsApp
                     </a>
 
-                    <h4>DESCRIPCIÓN</h4>
+                    <h4>    </h4>
                     <div id="detalle-desc"></div>
                 </div>
 
@@ -285,12 +395,12 @@
 
 </div>
 
-    <footer class="footer">
+<footer class="footer">
 
-        © 2026. Todos los derechos reservados |
-        Jardinería Eco Ortiz
+    © 2026. Todos los derechos reservados |
+    Jardinería Eco Ortiz
 
-    </footer>
+</footer>
 
 <script>
 
@@ -350,6 +460,12 @@ function filtrar(categoria, btn){
     let botones =
     document.querySelectorAll(".btn");
 
+    // ocultar info
+    document.querySelectorAll(".info-seccion")
+    .forEach(sec=>{
+        sec.style.display = "none";
+    });
+
     // quitar active
     botones.forEach(b =>
         b.classList.remove("active")
@@ -360,11 +476,9 @@ function filtrar(categoria, btn){
         btn.classList.add("active");
     }
 
-    // ocultar detalle SIEMPRE
-    const detalle =
-    document.getElementById("detalle");
-
-    detalle.style.display = "none";
+    // ocultar detalle
+    document.getElementById("detalle")
+    .style.display = "none";
 
     // mostrar portada
     document.getElementById("portada")
@@ -387,7 +501,9 @@ function filtrar(categoria, btn){
 
     });
 
-}
+} 
+
+
 
 function scrollCategoria(id, direccion){
 
@@ -402,6 +518,33 @@ function scrollCategoria(id, direccion){
 
     });
 
+}
+
+function mostrarInfo(id){
+
+    // ocultar secciones productos
+    document.querySelectorAll(".seccion")
+    .forEach(sec=>{
+        sec.style.display="none";
+    });
+
+    // ocultar info
+    document.querySelectorAll(".info-seccion")
+    .forEach(sec=>{
+        sec.style.display="none";
+    });
+
+    // ocultar detalle
+    document.getElementById("detalle")
+    .style.display="none";
+
+    // ocultar portada
+    document.getElementById("portada")
+    .style.display="none";
+
+    // mostrar info seleccionada
+    document.getElementById(id)
+    .style.display="block";
 }
 
 </script>
