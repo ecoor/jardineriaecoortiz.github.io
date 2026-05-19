@@ -1,4 +1,3 @@
-
 /* ========================================
    CONFIGURACION GLOBAL
 ======================================== */
@@ -687,3 +686,127 @@ body{
 
     box-sizing: border-box;
 }
+
+/* IMAGEN NOSOTROS */
+
+/* =========================================
+   NOSOTROS
+========================================= */
+
+.info-container{
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 50px;
+
+    width: 100%;
+}
+
+/* TEXTO */
+
+.info-texto{
+
+    flex: 1;
+}
+
+.info-texto h2{
+
+    font-size: 2rem;
+
+    margin-bottom: 20px;
+
+    color: #244539;
+}
+
+.info-texto h3{
+
+    margin-top: 20px;
+
+    margin-bottom: 8px;
+
+    color: #426546;
+
+    font-size: 1.3rem;
+
+    font-weight: bold;
+}
+
+.info-texto p{
+
+    line-height: 1.6;
+
+    font-size: 1rem;
+
+    text-align: justify;
+}
+
+/* IMAGEN DERECHA */
+
+.info-imagen{
+
+    width: 420px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    flex-shrink: 0;
+}
+
+/* MARCO */
+
+.info-imagen img{
+
+    width: 100%;
+
+    height: 420px;
+
+    object-fit: cover;
+
+    border-radius: 25px;
+
+    padding: 12px;
+
+    background: white;
+
+    border: 4px solid #D6D4B5;
+
+    box-shadow:
+    0 8px 25px rgba(0,0,0,0.15);
+
+    display: block;
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media(max-width: 900px){
+
+    .info-container{
+
+        flex-direction: column;
+    }
+
+    .info-imagen{
+
+        width: 100%;
+    }
+
+    .info-imagen img{
+
+        width: 100%;
+
+        max-width: 420px;
+
+        height: auto;
+    }
+
+}
+
