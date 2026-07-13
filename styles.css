@@ -411,122 +411,112 @@ body{
    DETALLE
 ======================================== */
 
+#detalle{
+    display:none;
+    max-width:1100px;
+    margin:40px auto;
+}
+
 .detalle-container{
 
-    display: flex;
+    display:flex;
 
-    gap: 2rem;
+    justify-content:center;
 
-    margin-top: 1.2rem;
+    align-items:center;
 
-    align-items: flex-start;
+    gap:40px;
 
-    width: 100%;
+    flex-wrap:wrap;
 }
 
 .detalle-container img{
 
-    width: 45%;
+    width:380px;
 
-    max-width: 31rem;
+    height:380px;
 
-    border-radius: 1rem;
+    object-fit:cover;
 
-    object-fit: cover;
+    border-radius:18px;
 
-    box-shadow: 0px 4px 12px rgba(0,0,0,0.15);
+    box-shadow:0 8px 20px rgba(0,0,0,.15);
+
+    flex-shrink:0;
 }
 
 .detalle-info{
 
-    flex: 1;
+    flex:1;
+
+    max-width:550px;
+}
+
+.detalle-info small{
+
+    color:#666;
+
+    font-size:14px;
+
+    text-transform:uppercase;
+
+    letter-spacing:1px;
 }
 
 .detalle-info h2{
 
-    font-size: 2.3rem;
+    font-size:32px;
 
-    margin-bottom: 1rem;
+    margin:10px 0;
+
+    color:#244539;
 }
 
 .detalle-info h3{
 
-    color: orange;
+    color:#ff9800;
 
-    font-size: 2rem;
+    font-size:28px;
 
-    margin-bottom: 1.2rem;
+    margin:10px 0 20px;
 }
 
 #detalle-desc{
 
-    font-size: 1rem;
+    margin-top:20px;
 
-    line-height: 1.7;
+    line-height:1.7;
+
+    font-size:16px;
 }
-
-#detalle{
-
-    display: none;
-
-    width: 100%;
-
-    margin-top: 2rem;
-}
-
-#detalle-desc li{
-
-    list-style: none;
-
-    position: relative;
-
-    padding-left: 1.4rem;
-
-    margin-bottom: 0.5rem;
-}
-
-#detalle-desc li::before{
-
-    content: "✔";
-
-    position: absolute;
-
-    left: 0;
-
-    color: green;
-
-    font-weight: bold;
-}
-
-/* ========================================
-   BOTON WHATSAPP
-======================================== */
 
 .btn-wsp{
 
-    display: inline-block;
+    display:inline-block;
 
-    margin-top: 1rem;
+    margin:20px 0;
 
-    background: #244539;
+    padding:18px 35px;
 
-    color: #F4F0DD;
+    border-radius:15px;
 
-    padding: 0.9rem 1.4rem;
+    font-size:22px;
 
-    border-radius: 0.8rem;
+    background:#244539;
 
-    font-weight: bold;
+    color:white;
 
-    transition: 0.3s;
+    text-decoration:none;
 
-    text-decoration: none;
+    font-weight:bold;
 }
 
 .btn-wsp:hover{
 
-    background: #426546;
+    background:#3b6547;
 }
+
+
 
 .btn-wsp i{
 
@@ -559,110 +549,57 @@ body{
     }
 }
 
-@media(max-width: 900px){
+@media(max-width:900px){
 
-    .container{
-
-        flex-direction: column;
-    }
-
-    .sidebar{
-
-        width: 100%;
-
-        min-width: 100%;
-
-        min-height: auto;
-
-        border-right: none;
-
-        border-bottom: 1px solid #D6D4B5;
-    }
-
-    .contenido{
-
-        width: 100%;
-    }
-
-    .card{
-
-        flex: 0 0 calc((100% - 1rem) / 2);
-    }
-
-    .detalle-container{
-
-        flex-direction: column;
-    }
-
-    .detalle-container img{
-
-        width: 100%;
-
-        max-width: 100%;
-    }
-
-    .detalle-info h2{
-
-        font-size: 1.8rem;
-    }
-
-    .detalle-info h3{
-
-        font-size: 1.5rem;
-    }
+.container{
+    flex-direction:column;
 }
 
-@media(max-width: 600px){
-
-    html{
-
-        font-size: 13px;
-    }
-
-    .contenido{
-
-        padding: 0.8rem;
-    }
-
-    .portada img{
-
-        height: 14rem;
-    }
-
-    .card{
-
-        flex: 0 0 100%;
-    }
-
-    .flecha{
-
-        width: 2.2rem;
-
-        height: 2.2rem;
-
-        font-size: 1rem;
-    }
-
-    .izquierda{
-
-        left: -0.5rem;
-    }
-
-    .derecha{
-
-        right: -0.5rem;
-    }
-
-    .menu{
-
-        justify-content: center;
-    }
-
-    .menu button{
-
-        width: 100%;
-    }
+.sidebar{
+    width:100%;
+    min-width:100%;
+    min-height:auto;
+    border-right:none;
+    border-bottom:1px solid #D6D4B5;
 }
+
+.contenido{
+    width:100%;
+}
+
+.card{
+    flex:0 0 calc((100% - 1rem)/2);
+}
+
+.detalle-container{
+    flex-direction:column;
+    text-align:center;
+}
+
+.detalle-info{
+    max-width:100%;
+}
+
+.detalle-container img{
+    width:320px;
+    height:320px;
+}
+
+.detalle-container img{
+    width:100%;
+    height:auto;
+}
+
+.detalle-info h2{
+    font-size:34px;
+}
+
+.detalle-info h3{
+    font-size:32px;
+}
+
+}
+
 
 /* ========================================
    FOOTER
