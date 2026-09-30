@@ -1,763 +1,1060 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>Jardinería EcoOrtiz</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Jardinería Eco Ortiz: plantas, flores, macetas y servicios de jardinería en Lima.">
+  <title>Jardinería Eco Ortiz | Plantas, Flores y Jardinería</title>
 
-    <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    :root{
+      --green:#20543f;
+      --green-dark:#173d2e;
+      --green-soft:#e8f1ea;
+      --cream:#faf8f2;
+      --text:#26362e;
+      --muted:#66756e;
+      --white:#fff;
+      --border:#e1e5df;
+      --shadow:0 22px 55px rgba(25,60,44,.13);
+      --radius:30px;
+    }
 
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:"DM Sans",Arial,sans-serif;
+      color:var(--text);
+      background:var(--cream);
+      line-height:1.6;
+    }
+    a{text-decoration:none;color:inherit}
+    img{display:block;max-width:100%}
+
+    .container{width:min(1160px,92%);margin:0 auto}
+
+    /* NAV */
+    header{
+      position:sticky;
+      top:0;
+      z-index:100;
+      background:rgba(250,248,242,.95);
+      backdrop-filter:blur(12px);
+      border-bottom:1px solid var(--border);
+    }
+    .nav{
+      min-height:86px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:25px;
+    }
+    .logo{
+      width:155px;
+      height:auto;
+      object-fit:contain;
+    }
+    nav ul{
+      display:flex;
+      align-items:center;
+      gap:28px;
+      list-style:none;
+      font-weight:600;
+      font-size:15px;
+    }
+    nav a{transition:.2s}
+    nav a:hover{color:var(--green)}
+    .nav-cta{
+      background:var(--green);
+      color:#fff;
+      padding:15px 25px;
+      border-radius:999px;
+      font-weight:700;
+      transition:.2s;
+    }
+    .nav-cta:hover{
+      background:var(--green-dark);
+      transform:translateY(-2px);
+    }
+    .mobile-menu{
+      display:none;
+      border:0;
+      background:none;
+      font-size:28px;
+      cursor:pointer;
+    }
+
+    /* HERO */
+    .hero{
+      min-height:calc(100vh - 86px);
+      display:grid;
+      grid-template-columns:minmax(0,.92fr) minmax(430px,.88fr);
+      align-items:center;
+      gap:60px;
+      padding:62px 0 72px;
+    }
+
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      background:var(--green-soft);
+      color:var(--green-dark);
+      padding:9px 16px;
+      border-radius:999px;
+      font-size:14px;
+      font-weight:700;
+      margin-bottom:25px;
+    }
+
+    h1,h2{
+      font-family:"Playfair Display",Georgia,serif;
+      color:var(--green);
+      line-height:1.08;
+    }
+    h1{
+      font-size:clamp(48px,5.7vw,76px);
+      letter-spacing:-1.8px;
+      max-width:720px;
+    }
+    .hero-copy{
+      color:var(--muted);
+      font-size:18px;
+      max-width:650px;
+      margin:25px 0 30px;
+    }
+    .actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:14px;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:54px;
+      padding:0 24px;
+      border-radius:999px;
+      font-weight:700;
+      border:1px solid transparent;
+      cursor:pointer;
+      transition:.2s;
+    }
+    .btn-primary{
+      background:var(--green);
+      color:#fff;
+    }
+    .btn-primary:hover{
+      background:var(--green-dark);
+      transform:translateY(-2px);
+    }
+    .btn-secondary{
+      background:#fff;
+      color:var(--green-dark);
+      border-color:#d6ddd8;
+    }
+    .btn-secondary:hover{
+      border-color:var(--green);
+      transform:translateY(-2px);
+    }
+
+    /*
+      HERO PHOTO CARD
+      La foto NO se estira con zoom del navegador:
+      - el contenedor tiene dimensiones controladas
+      - object-fit: cover mantiene proporción
+      - object-position centra la fotografía
+      - overflow:hidden evita que se salga del recuadro
+    */
+    .hero-card{
+      position:relative;
+      height:590px;
+      border-radius:34px;
+      overflow:hidden;
+      box-shadow:var(--shadow);
+      background:#dce9df;
+    }
+    .hero-card > img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      object-position:center center;
+    }
+    .hero-card::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(
+        180deg,
+        rgba(10,45,30,0) 55%,
+        rgba(10,45,30,.16) 100%
+      );
+      pointer-events:none;
+    }
+    .hero-label{
+      position:absolute;
+      z-index:2;
+      left:24px;
+      right:24px;
+      bottom:24px;
+      display:flex;
+      align-items:center;
+      gap:15px;
+      background:rgba(255,255,255,.96);
+      border-radius:22px;
+      padding:17px 20px;
+      box-shadow:0 10px 30px rgba(0,0,0,.10);
+    }
+    .label-icon{
+      width:48px;
+      height:48px;
+      border-radius:50%;
+      background:var(--green-soft);
+      display:grid;
+      place-items:center;
+      font-size:25px;
+      flex:0 0 auto;
+    }
+    .hero-label strong{
+      display:block;
+      color:var(--green-dark);
+      font-size:18px;
+      margin-bottom:1px;
+    }
+    .hero-label span{
+      color:#4f5e57;
+      font-size:14px;
+    }
+
+    /* SECTIONS */
+    section{padding:95px 0}
+    .soft{background:var(--green-soft)}
+    .section-head{
+      display:flex;
+      align-items:end;
+      justify-content:space-between;
+      gap:30px;
+      margin-bottom:35px;
+    }
+    h2{font-size:clamp(34px,4vw,48px)}
+    .section-head p{
+      max-width:510px;
+      color:var(--muted);
+    }
+
+    .cards{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:18px;
+    }
+    .card{
+      background:#fff;
+      border:1px solid var(--border);
+      border-radius:24px;
+      overflow:hidden;
+      transition:.25s;
+    }
+    .card:hover{
+      transform:translateY(-6px);
+      box-shadow:var(--shadow);
+    }
+    .card-img{
+      height:220px;
+      overflow:hidden;
+      background:#e4eee6;
+    }
+    .card-img img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+    .card-body{padding:22px}
+    .card h3{color:var(--green-dark);margin-bottom:6px}
+    .card p{color:var(--muted);font-size:14px}
+
+    .flowers{
+      display:grid;
+      grid-template-columns:.9fr 1.1fr;
+      align-items:center;
+      gap:55px;
+    }
+    .flower-photo{
+      height:480px;
+      border-radius:32px;
+      overflow:hidden;
+      box-shadow:var(--shadow);
+    }
+    .flower-photo img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+
+    .flower-list{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:12px;
+      margin:25px 0;
+    }
+    .flower-list div{
+      background:#fff;
+      border:1px solid var(--border);
+      border-radius:16px;
+      padding:14px;
+      font-weight:600;
+    }
+
+    .contact{
+      background:var(--green-dark);
+      color:#fff;
+    }
+    .contact h2{color:#fff}
+    .contact p{color:#dbe8df;margin:18px 0 25px}
+    .contact .btn-primary{background:#fff;color:var(--green-dark)}
+
+    footer{
+      background:#102c21;
+      color:#c5d4cc;
+      padding:25px 0;
+      font-size:13px;
+    }
+    .footer-inner{
+      display:flex;
+      justify-content:space-between;
+      gap:20px;
+    }
+
+    .whatsapp{
+      position:fixed;
+      right:22px;
+      bottom:22px;
+      z-index:150;
+      width:58px;
+      height:58px;
+      border-radius:50%;
+      display:grid;
+      place-items:center;
+      background:#20a464;
+      color:#fff;
+      font-size:25px;
+      box-shadow:0 12px 30px rgba(0,0,0,.20);
+    }
+
+    /* SCROLL ANIMATION */
+    .reveal{
+      opacity:0;
+      transform:translateY(22px);
+      transition:opacity .7s ease,transform .7s ease;
+    }
+    .reveal.visible{
+      opacity:1;
+      transform:none;
+    }
+
+    @media(max-width:950px){
+      .nav{min-height:75px}
+      nav ul{display:none}
+      .mobile-menu{display:block}
+      .nav-cta{display:none}
+
+      .hero{
+        grid-template-columns:1fr;
+        gap:38px;
+        padding-top:45px;
+      }
+      .hero-card{height:520px}
+      .cards{grid-template-columns:repeat(2,1fr)}
+      .flowers{grid-template-columns:1fr}
+    }
+
+    @media(max-width:600px){
+      .container{width:min(92%,520px)}
+      .logo{width:130px}
+      h1{font-size:48px}
+      .hero-copy{font-size:16px}
+      .hero-card{
+        height:390px;
+        border-radius:25px;
+      }
+      .hero-label{
+        left:13px;
+        right:13px;
+        bottom:13px;
+        padding:13px;
+      }
+      .hero-label span{font-size:12px}
+      .label-icon{width:40px;height:40px;font-size:20px}
+      .cards{grid-template-columns:1fr}
+      .flower-photo{height:360px}
+      .flower-list{grid-template-columns:1fr}
+      section{padding:70px 0}
+      .footer-inner{flex-direction:column}
+    }
+
+    @media(prefers-reduced-motion:reduce){
+      html{scroll-behavior:auto}
+      .reveal{opacity:1;transform:none;transition:none}
+    }
+  
+    .contact-socials{
+      background:var(--green-dark);
+      color:#fff;
+      padding:95px 0;
+    }
+    .contact-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      align-items:center;
+      gap:70px;
+    }
+    .contact-intro h2{
+      color:#fff;
+      margin-bottom:18px;
+    }
+    .contact-intro p{
+      color:#dbe8df;
+      font-size:17px;
+      max-width:570px;
+      margin:0 0 28px;
+    }
+    .contact-card{
+      background:#fff;
+      color:var(--text);
+      border-radius:30px;
+      padding:20px 38px;
+      box-shadow:0 20px 55px rgba(0,0,0,.16);
+    }
+    .contact-row{
+      display:flex;
+      align-items:center;
+      gap:20px;
+      padding:21px 0;
+      border-bottom:1px solid #e7e8e4;
+      transition:.2s ease;
+    }
+    .contact-row:last-child{border-bottom:0}
+    .contact-row:hover{
+      transform:translateX(5px);
+      color:var(--green);
+    }
+    .contact-icon{
+      width:40px;
+      height:40px;
+      border-radius:50%;
+      display:grid;
+      place-items:center;
+      background:var(--green-soft);
+      color:var(--green-dark);
+      font-weight:800;
+      font-size:20px;
+      flex:0 0 auto;
+    }
+    .contact-row strong{
+      display:block;
+      font-size:17px;
+      color:#14251d;
+    }
+    .contact-row small{
+      display:block;
+      margin-top:2px;
+      color:#5f6e67;
+      font-size:15px;
+    }
+
+    @media(max-width:850px){
+      .contact-grid{grid-template-columns:1fr;gap:40px}
+    }
+
+    @media(max-width:600px){
+      .contact-card{padding:12px 20px;border-radius:24px}
+      .contact-row{padding:17px 0}
+    }
+
+  
+    /* SOBRE ECO ORTIZ - diseño basado en la referencia enviada */
+    .about-section{
+      background:var(--cream);
+      padding:110px 0;
+    }
+    .about-panel{
+      min-height:350px;
+      background:var(--green);
+      color:#fff;
+      border-radius:36px;
+      padding:68px 70px;
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      align-items:center;
+      gap:70px;
+      overflow:hidden;
+    }
+    .about-pill{
+      display:inline-flex;
+      align-items:center;
+      background:#f5f6ef;
+      color:var(--green-dark);
+      padding:10px 18px;
+      border-radius:999px;
+      font-size:14px;
+      font-weight:700;
+      margin-bottom:28px;
+    }
+    .about-panel h2{
+      color:#fff;
+      font-size:clamp(42px,4.6vw,62px);
+      line-height:1.08;
+      letter-spacing:-1.3px;
+    }
+    .about-right{
+      padding-top:6px;
+    }
+    .about-stars{
+      color:#f0c15a;
+      letter-spacing:4px;
+      font-size:20px;
+      margin-bottom:22px;
+    }
+    .about-right blockquote{
+      margin:0;
+      font-size:23px;
+      line-height:1.55;
+      font-weight:500;
+      color:#f7faf7;
+      max-width:620px;
+    }
+    .about-right p{
+      margin-top:25px;
+      color:#cbdcd3;
+      font-size:16px;
+      font-weight:600;
+    }
+
+    @media(max-width:850px){
+      .about-panel{
+        grid-template-columns:1fr;
+        gap:35px;
+        padding:48px 42px;
+      }
+      .about-right blockquote{
+        font-size:20px;
+      }
+    }
+
+    @media(max-width:600px){
+      .about-section{padding:70px 0}
+      .about-panel{
+        border-radius:26px;
+        padding:36px 26px;
+      }
+      .about-panel h2{
+        font-size:40px;
+      }
+      .about-right blockquote{
+        font-size:18px;
+      }
+      .about-stars{
+        font-size:17px;
+      }
+    }
+
+  
+    /* HABLEMOS - bloque final compacto */
+    .contact-socials{
+      background:var(--green-dark);
+      color:#fff;
+      padding:86px 0;
+    }
+    .contact-grid{
+      display:grid;
+      grid-template-columns:minmax(0,1fr) minmax(430px,1fr);
+      align-items:center;
+      gap:70px;
+    }
+    .contact-intro h2{
+      color:#fff;
+      font-size:clamp(42px,4.6vw,62px);
+      line-height:1.08;
+      margin:18px 0;
+    }
+    .contact-intro p{
+      color:#dbe8df;
+      font-size:17px;
+      max-width:590px;
+      margin:0 0 28px;
+    }
+    .contact-intro .eyebrow{
+      margin-bottom:0;
+      background:#315c49 !important;
+      color:#fff !important;
+    }
+    .contact-card{
+      background:#fff;
+      color:var(--text);
+      border-radius:28px;
+      padding:18px 38px;
+      box-shadow:0 20px 55px rgba(0,0,0,.16);
+    }
+    .contact-row{
+      display:flex;
+      align-items:center;
+      gap:18px;
+      padding:17px 0;
+      border-bottom:1px solid #e7e8e4;
+      transition:.2s ease;
+    }
+    .contact-row:last-child{border-bottom:0}
+    .contact-row:hover{
+      transform:translateX(5px);
+      color:var(--green);
+    }
+    .contact-icon{
+      width:36px;
+      height:36px;
+      border-radius:50%;
+      display:grid;
+      place-items:center;
+      background:var(--green-soft);
+      color:var(--green-dark);
+      font-weight:800;
+      font-size:18px;
+      flex:0 0 auto;
+    }
+    .contact-row strong{
+      display:block;
+      font-size:16px;
+      color:#14251d;
+    }
+    .contact-row small{
+      display:block;
+      margin-top:1px;
+      color:#5f6e67;
+      font-size:14px;
+    }
+
+    @media(max-width:850px){
+      .contact-grid{
+        grid-template-columns:1fr;
+        gap:40px;
+      }
+    }
+
+    @media(max-width:600px){
+      .contact-socials{padding:65px 0}
+      .contact-card{
+        padding:12px 20px;
+        border-radius:24px;
+      }
+      .contact-row{padding:15px 0}
+      .contact-intro h2{font-size:42px}
+    }
+
+  </style>
 </head>
 
 <body>
 
-<div class="container">
-
-    <!-- SIDEBAR -->
-    <aside class="sidebar">
-
-        <div class="logo">
-            <img src="images/logo2.png" alt="Logo Eco Ortiz">
-        </div>
-
-        <h3>ENTRA EN CONTACTO</h3>
-
-        <p>
-            <a href="https://wa.me/51997468890" target="_blank">
-                <i class="fab fa-whatsapp"></i>
-                +51997468890
-            </a>
-        </p>
-
-        <p>
-            <a href="tel:+51980041926">
-                <i class="fas fa-phone"></i>
-                +51980041926
-            </a>
-        </p>
-
-        <p>
-            <a href="https://instagram.com/jardineriaecoortiz" target="_blank">
-                <i class="fab fa-instagram"></i>
-                @jardineriaecoortiz
-            </a>
-        </p>
-
-        <p>
-            <a href="mailto:jardineriaecoortiz@gmail.com">
-                <i class="fas fa-envelope"></i>
-                jardineriaecoortiz@gmail.com
-            </a>
-        </p>
-
-        <p>
-            <a href="https://www.google.com/maps/search/?api=1&query=Surco+Lima+Peru"
-            target="_blank">
-                <i class="fas fa-map-marker-alt"></i>
-                Surco
-            </a>
-        </p>
-
-        <h3>INFORMACION</h3>
-
-        <ul>
-            <li onclick="mostrarInfo('nosotros')">Nosotros</li>
-            <li onclick="mostrarInfo('preguntas')">Preguntas Frecuentes</li>
-            <li onclick="mostrarInfo('garantia')">Garantia y Asesoramiento</li>
-            
-        </ul>
-
-    </aside>
-
-    <!-- CONTENIDO -->
-    <div class="contenido">
-
-        <!-- PORTADA -->
-        <div class="portada" id="portada">
-            <img src="images/portada.png" alt="Portada">
-        </div>
-
-        <main class="main">
-
-            <!-- MENU -->
-            <nav class="menu">
-
-                
-                <button class="btn active"
-                onclick="filtrar('inicio',this)">
-                    INICIO
-                </button>
-
-                <button class="btn"
-                onclick="filtrar('promocion',this)">
-                    PROMOCION
-                </button>
-
-                <button class="btn"
-                onclick="filtrar('plantas',this)">
-                    PLANTAS INTERIOR
-                </button>
-
-                <button class="btn"
-                onclick="filtrar('mantenimiento',this)">
-                    MANTENIMIENTO
-                </button>
-
-            </nav>
-
-            <!-- PROMOCION -->
-            <section id="promocion" class="seccion">
-
-                <h2>Promoción</h2>
-
-                <div class="slider-wrapper">
-
-                    <button class="flecha izquierda"
-                    onclick="scrollCategoria('promo-slider',-1)">
-                        ❮
-                    </button>
-
-                    <div class="slider" id="promo-slider">
-
-                        <div class="card" onclick="verDetalle(
-                    'images/Combo1.png',
-                    'PROMOCION',
-                    'HELECHO DE BOSTON ',
-                    'S/ 39.90',
-                    `Esta planta es un Helecho de Boston (nombre científico: Nephrolepis exaltata 'Bostoniensis').<br><br>
-                        Es uno de los helechos más populares como planta de interior. Se caracteriza por sus frondas (hojas)<br> 
-                        largas, arqueadas y plumosas de color verde brillante, que le dan un aspecto exuberante y elegante.<br>
-                        blancas y astromelias rosadas. Perfecto para expresar gratitud o celebrar momentos especiales.<br><br>
-
-                            <ul>
-                                INCLUYE:
-                            <li>Nativo de regiones tropicales (América, Florida, México, etc.).</li>
-                            <li>Es una planta perenne, sin flores, que se reproduce por esporas</li>
-                            <li>Sus hojas son finamente divididas, lo que le da un look encaje o plumoso. </li>
-                            <li>Es excelente purificador de aire</li>
-                            <li>Aporta mucha humedad y frescura al ambiente.</li>
-                            </ul>`
-                                                    )">
-                            <img src="images/Combo1.png">
-                            <p>HELECHO DE BOSTON</p>
-                            <span>S/ 39.90</span>
-                        </div>
-
-                        <div class="card" onclick="verDetalle(
-                    'images/Combo2.png',
-                    'PROMOCION',
-                    'LLAMADOLAR ',
-                    'S/ 39.00',
-                    `Nombre científico: Plectranthus verticillatus (también conocida como Swedish Ivy).<br><br>
-                        ELa Llamadólar, también conocida como Planta del Dinero o Swedish Ivy, es una de las plantas de interior<br> 
-                        más queridas y fáciles de cuidar. Sus hermosas hojas redondas en forma de moneda le han dado su popular nombre,<br>
-                        simbolizando prosperidad y buena fortuna.<br><br>
-                        
-
-                            <ul>
-                                INCLUYE:
-                            <li>Purifica el aire y ayuda a aumentar la humedad del ambiente.</li>
-                            <li>Muy resistente y de bajo mantenimiento.</li>
-                            <li>Perfecta para principiantes y para quienes buscan traer energía positiva </li>
-                            <li>Prefiere luz indirecta brillante. Tolera algo de sombra.</li>
-                            
-                            </ul>`
-                                                    )" >
-                                                                            
-                            <img src="images/Combo2.png">
-                            <p>LLAMADOLAR</p>
-                            <span>S/ 39.00</span>
-                        </div>
-
-                        <div class="card" onclick="verDetalle(
-                    'images/Combo3.png',
-                    'PROMOCION',
-                    'LLAMADOLAR ',
-                    'S/ 39.00 (Oferta por tiempo limitado)',
-                    `Abono Líquido para Plantas Verdes y de Interior<br><br>
-                        Fórmula equilibrada NPK 10-10-10 – Ideal para Llamadólar, Potos, Monstera, Helechos y todas tus plantas de follaje.<br><br>
-                                                
-
-                            <ul>
-                                BENEFICIOS:
-                            <li>Estimula un crecimiento exuberante y hojas más grandes y verdes.</li>
-                            <li>Fortalece la planta y mejora su resistencia.</li>
-                            <li>Fácil aplicación: solo diluir en el agua de riego.</li>
-                            <li>Resultados visibles en pocas semanas.</li>
-                            
-                            </ul>`
-                                                    )"
-                                                        >
-                            <img src="images/combo3.png">
-                            <p>ABONO LIQUIDO</p>
-                            <span>S/ 25.90</span>
-                        </div>
-
-                        <div class="card" onclick="verDetalle(
-                    'images/Combo4.png',
-                    'PROMOCION',
-                    'MACETA BLANCA CERAMICA ',
-                    'S/ 25.00 (Oferta por tiempo limitado)',
-                    `Tamaño ideal (15-18 cm) para Llamadólar, Lirio de Paz, Potos y más.<br><br>
-                        Material cerámico de alta calidad, con drenaje. Diseño minimalista que resalta tus plantas.<br><br>
-                                                
-
-                            <ul>
-                                BENEFICIOS:
-                            <li>Su color blanco puro y acabado mate realza la belleza natural de cualquier planta</li>
-                            <li>Más resistente y duradera que las macetas de plástico.</li>
-                            <li>La cerámica es ligeramente porosa, lo que ayuda a que la tierra respire y evita el exceso de humedad,<br>
-                                reduciendo el riesgo de pudrición de raíces.</li>
-                            <li>Superficie lisa y no porosa que no acumula manchas ni hongos</li>
-                            
-                            </ul>`
-                                                    )" >
-                                                    
-                            <img src="images/combo4.png">
-                            <p>MACETA BLANCA CERAMICA PRIMIUM</p>
-                            <span>S/ 49.90</span>
-                        </div>
-
-                        <div class="card">
-                            <img src="images/combo4.png">
-                            <p>COMBO COMPLETO xx – "KIT JARDINERO"</p>
-                            <span>S/ 49.90</span>
-                        </div>
-
-                    </div>
-
-                    <button class="flecha derecha"
-                    onclick="scrollCategoria('promo-slider',1)">
-                        ❯
-                    </button>
-
-                </div>
-
-            </section>
-
-            <!-- PLANTAS -->
-            <section id="plantas" class="seccion">
-
-                <h2>Plantas Interior</h2>
-
-                <div class="slider-wrapper">
-
-                    <button class="flecha izquierda"
-                    onclick="scrollCategoria('plantas-slider',-1)">
-                        ❮
-                    </button>
-
-                    <div class="slider" id="plantas-slider">
-
-                        <div class="card" onclick="verDetalle(
-                    'images/FicusLyrataBambino.png',
-                    'PLANTAS INTERIOR',
-                    'FICUS LYRATA BAMBINO  (Hoja de Violín)',
-                    'S/ 220.00',
-                    `Aporta elegancia y un estilo moderno a cualquier ambiente con este hermoso Ficus Lyrata. <br><br>
-                        Sus grandes hojas verdes y brillantes lo convierten en una de las plantas de interior más apreciadas para hogares y oficinas.<br><br>
-                                                
-
-                            <ul>
-                                BENEFICIOS:
-                            <li>Planta natural de alta calidad.</li>
-                            <li>Ideal para interiores con buena iluminación natural.</li>
-                            <li>Fácil mantenimiento</li>
-                            <li>Purifica el ambiente y aporta frescura al espacio.</li>
-                            
-                            </ul>`
-                                                    )" >
-
-                            <img src="images/FicusLyrataBambino.png">
-                            <p>FicusLyrataBambino</p>
-                            <span>S/ 220.00</span>
-                        </div>
-
-                        <div class="card" onclick="verDetalle(
-                    'images/LiriodePaz.png',
-                    'PLANTAS INTERIOR',
-                    'LIRIO DE PAZ',
-                    'S/ 75.00',
-                    `Una elegante planta de interior que destaca por sus hermosas flores blancas y su abundante follaje verde. <br><br>
-                        Ideal para decorar hogares, oficinas y espacios con luz natural indirecta.<br><br>
-                        🌿 Perfecta para regalar o dar un toque de frescura y elegancia a cualquier ambiente. <br><br>
-                                                
-
-                            <ul>
-                                BENEFICIOS:
-                            <li>Planta natural de alta calidad.</li>
-                            <li>Fácil de cuidar.</li>
-                            <li>Ayuda a mejorar la calidad del aire</li>
-                            <li>Prefiere luz indirecta y riego moderado.</li>
-                            
-                            </ul>`
-                                                    )" >
-
-
-                            <img src="images/LiriodePaz.png">
-                            <p>Lirio de Paz</p>
-                            <span>S/ 75.00</span>
-                        </div>
-
-                        <div class="card" onclick="verDetalle(
-                    'images/AnthuriumRojoCal.png',
-                    'PLANTAS INTERIOR',
-                    'ANTHURIUM ROJO',
-                    'S/ 85.00',
-                    `Elegante planta de interior reconocida por sus llamativas flores rojas y hojas de intenso color verde. <br><br>
-                        Ideal para decorar hogares, oficinas y regalar en ocasiones especiales.<br><br>
-                        
-                                                
-
-                            <ul>
-                                BENEFICIOS:
-                            <li>Planta natural y saludable.</li>
-                            <li>Fácil mantenimiento.</li>
-                            <li>Prefiere luz indirecta y riego moderado.</li>
-                                                        
-                            </ul>`
-                                                    )" >
-
-                            <img src="images/AnthuriumRojoCal.png">
-                            <p>Anthurium Rojo</p>
-                            <span>S/ 85.00</span>
-                        </div>                        
-
-                    </div>
-
-                    <button class="flecha derecha"
-                    onclick="scrollCategoria('plantas-slider',1)">
-                        ❯
-                    </button>
-
-                </div>
-
-            </section>
-
-            <!-- MANTENIMIENTO -->
-            <section id="mantenimiento" class="seccion">
-
-                <h2>Mantenimiento</h2>
-
-                <div class="slider-wrapper">
-
-                    <button class="flecha izquierda"
-                    onclick="scrollCategoria('mantenimiento-slider',-1)">
-                        ❮
-                    </button>
-
-                    <div class="slider" id="mantenimiento-slider">
-
-                        <div class="card" onclick="verDetalle(
-                    'images/mantenimiento3.png',
-                    'MANTENIMIENTO DE JARDINES',
-                    'Mantenimiento de Áreas Verdes – Jardín Grande',
-                    'S/ 300.00',
-                    `Brindamos un servicio integral de mantenimiento para jardines amplios, garantizando espacios verdes<br>
-                        saludables, limpios y con una excelente presentación durante todo el año.<br>
-                        📍 Atendemos hogares, condominios, oficinas y empresas.<br>                                                                                         
-
-                            <ul>
-                                BENEFICIOS:
-                            <li>Corte y mantenimiento de césped.</li>
-                            <li>Poda de árboles, arbustos, cercos vivos y plantas ornamentales.</li>
-                            <li>Limpieza de hojas, maleza y residuos vegetales.</li>
-                            <li>Perfilado y acondicionamiento de áreas verdes.</li>
-                            <li>Revisión general del estado de las plantas y recomendaciones de cuidado.</li>
-                                                        
-                            </ul>
-                        📌 El precio es referencial para jardines grandes. El costo final dependerá del tamaño del área, el estado del jardín y los trabajos requeridos.<br><br>`
-                                                    )" >
-
-
-                            <img src="images/mantenimiento3.png">
-                            <p>Jardín Grande</p>
-                            <span>S/ 300.00</span>
-                        </div>
-
-                        <div class="card" onclick="verDetalle(
-                    'images/mantenimiento2.png',
-                    'MANTENIMIENTO DE JARDINES',
-                    'Mantenimiento de Áreas Verdes – Jardín Mediano',
-                    'S/ 150.00',
-                    `Conserva tu jardín en óptimas condiciones con un servicio profesional que mantiene el césped,<br>
-                        las plantas y las áreas verdes limpias, saludables y bien presentadas.<br>
-                        📍 Atendemos hogares, condominios, oficinas y empresas.<br>                                                                                         
-
-                            <ul>
-                                INCLUYE:
-                            <li>Corte y mantenimiento de césped.</li>
-                            <li>Poda de árboles, arbustos, cercos vivos y plantas ornamentales.</li>
-                            <li>Limpieza de hojas, maleza y residuos vegetales.</li>
-                            <li>Perfilado y acondicionamiento de áreas verdes.</li>
-                            <li>Revisión general del estado de las plantas y recomendaciones de cuidado.</li>
-                                                        
-                            </ul>
-                        📌 El precio es referencial para jardines medianos. El costo final dependerá del tamaño del área, el estado del jardín y los trabajos requeridos.<br><br>`
-                                                    )" >
-
-                            <img src="images/mantenimiento2.png">
-                            <p>Jardín Mediano</p>
-                            <span>S/ 150.00</span>
-                        </div>
-
-                        <div class="card" onclick="verDetalle(
-                    'images/mantenimiento1.png',
-                    'MANTENIMIENTO DE JARDINES',
-                    'Mantenimiento de Áreas Verdes – Jardín Pequeño',
-                    'S/ 80.00',
-                    `Mantén tu jardín siempre limpio, saludable y bien cuidado con nuestro servicio de mantenimiento profesional.<br>
-                        
-                        📍 Atendemos hogares, condominios, oficinas y empresas.<br>                                                                                         
-
-                            <ul>
-                                INCLUYE:
-                            <li>Corte y mantenimiento de césped.</li>
-                            <li>Poda de árboles, arbustos, cercos vivos y plantas ornamentales.</li>
-                            <li>Limpieza de hojas, maleza y residuos vegetales.</li>
-                            <li>Perfilado y acondicionamiento de áreas verdes.</li>
-                            <li>Revisión general del estado de las plantas y recomendaciones de cuidado.</li>
-                                                        
-                            </ul>
-                        📌 El precio es referencial para jardines medianos. El costo final dependerá del tamaño del área, el estado del jardín y los trabajos requeridos.<br><br>`
-                                                    )" >
-
-                            <img src="images/mantenimiento1.png">
-                            <p>Jardín Pequeño</p>
-                            <span>S/ 80.00</span>
-                        </div>
-
-                    </div>
-
-                    <button class="flecha derecha"
-                    onclick="scrollCategoria('mantenimiento-slider',1)">
-                        ❯
-                    </button>
-
-                </div>
-
-            </section>
-
-            <!-- colocar aca Informacion Eco Ortiz -->
-           
-                <!-- =========================================
-                    INFORMACION
-                ========================================= -->
-
-                <!-- NOSOTROS -->
-                <section id="nosotros" class="info-seccion" style="display:none;">
-
-                    <div class="info-container">
-
-                        <div class="info-texto">
-
-                            <h3>Nosotros</h3>
-
-                            <h3>Nuestra Misión</h3>
-
-                            <p>
-                                Brindar soluciones integrales en jardinería mediante servicios y productos de alta
-                                calidad, creando y conservando espacios verdes que contribuyan al bienestar de nuestros
-                                clientes y al cuidado del medio ambiente, con un equipo comprometido, responsable y
-                                orientado a la excelencia.
-                            </p>
-
-                            <h3>Nuestra Visión</h3>
-
-                            <p>
-                                Ser una empresa líder y referente en servicios de jardinería y paisajismo en Lima,
-                                reconocida por la calidad de nuestros trabajos, la confianza de nuestros clientes
-                                y nuestro compromiso con la innovación, la sostenibilidad y el cuidado del medio
-                                ambiente.
-
-                            </p>
-
-                        </div>
-
-                        <div class="info-imagen">
-                            <img src="images/mantenimiento3.png" alt="">
-                        </div>
-
-                    </div>
-
-                </section>
-
-                <!-- PREGUNTAS -->
-                <section id="preguntas" class="info-seccion" style="display:none;">
-
-                    <h2>Preguntas Frecuentes</h2>
-
-                    <div class="faq">
-
-                        <div class="faq-item">
-                            <h3>¿Cada cuánto tiempo se riega una planta de interior?</h3>
-
-                            <p>
-                                Depende del tipo de planta, clima y tamaño de maceta.
-                                Generalmente se recomienda revisar la humedad de la tierra
-                                2 a 3 veces por semana y evitar el exceso de agua.
-                            </p>
-                        </div>
-
-                        <div class="faq-item">
-                            <h3>¿Cada cuánto tiempo se realiza una fumigación al jardín?</h3>
-
-                            <p>
-                                Normalmente se recomienda cada 30 o 45 días,
-                                dependiendo de la presencia de plagas, humedad
-                                y estación del año.
-                            </p>
-                        </div>
-
-                        <div class="faq-item">
-                            <h3>¿Qué tipos de abonos se usan para las plantas de agua?</h3>
-
-                            <p>
-                                Se utilizan fertilizantes líquidos ricos en minerales,
-                                nutrientes orgánicos y abonos especiales para plantas
-                                acuáticas que favorecen el crecimiento saludable.
-                            </p>
-                        </div>
-
-                        <div class="faq-item">
-                            <h3>¿Las plantas incluyen maceta?</h3>
-
-                            <p>
-                                Algunas plantas incluyen maceta decorativa y otras
-                                vienen en maceta básica de vivero. Esto se especifica
-                                en cada producto.
-                            </p>
-                        </div>
-
-                        <div class="faq-item">
-                            <h3>¿Realizan delivery?</h3>
-
-                            <p>
-                                Sí, realizamos entregas en diferentes distritos de Lima.
-                                El costo puede variar según la ubicación
-                            </p>
-                        </div>
-
-                        <div class="faq-item">
-                            <h3>¿Qué métodos de pago aceptan?</h3>
-
-                            <p>
-                                Aceptamos Yape, Plin, transferencias bancarias
-                            </p>
-                        </div>
-
-                    </div>
-
-                </section>
-
-                <!-- GARANTIA -->
-                <section id="garantia" class="info-seccion" style="display:none;">
-
-                    <h2>Garantía y Asesoramiento</h2>
-
-                    <div class="garantia-box">
-
-                        <p>
-                            Ofrecemos garantías de hasta por un mes después de
-                            realizado el mantenimiento.
-                        </p>
-
-                        <p>
-                            Además, el asesoramiento es permanente para ayudarte
-                            con el cuidado, mantenimiento y crecimiento saludable
-                            de tus plantas y jardines.
-                        </p>
-
-                    </div>
-
-                </section>
-
-            <!-- Fin Informacion Eco Ortiz -->
-
-             <div id="detalle" style="display:none;">
-
-                <div class="detalle-container">
-
-                <img id="detalle-img" src="">
-
-                <div class="detalle-info">
-                    <small id="detalle-categoria"></small>
-                    <h2 id="detalle-titulo"></h2>
-                    <h3 id="detalle-precio"></h3>
-
-                    <a id="btn-whatsapp" target="_blank" class="btn-wsp">
-                        <i class="fab fa-whatsapp"></i> Enviar un mensaje por WhatsApp
-                    </a>
-
-                    <h4>    </h4>
-                    <div id="detalle-desc"></div>
-                </div>
-
-                </div>
-
-            </div>
-
-        </main>
-
+<header>
+  <div class="container nav">
+    <a href="#inicio" aria-label="Jardinería Eco Ortiz">
+      <img class="logo" src="assets/logo-eco-ortiz.png" alt="Jardinería Eco Ortiz">
+    </a>
+
+    <nav>
+      <ul>
+        <li><a href="#plantas">Plantas</a></li>
+        <li><a href="#flores">Flores</a></li>
+        <li><a href="#jardineria">Jardinería</a></li>
+        <li><a href="#proyectos">Proyectos</a></li>
+        <li><a href="#nosotros">Nosotros</a></li>
+      </ul>
+    </nav>
+
+    <a class="nav-cta" href="#" data-whatsapp="Hola Eco Ortiz 🌿, quiero solicitar una cotización.">
+      💬 Cotizar
+    </a>
+
+    <button class="mobile-menu" aria-label="Abrir menú">☰</button>
+  </div>
+</header>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero container" id="inicio">
+
+    <div class="hero-content reveal">
+      <div class="eyebrow">🌱 Lima · Atención personalizada</div>
+
+      <h1>Transformamos tus espacios con vida.</h1>
+
+      <p class="hero-copy">
+        Plantas, flores, macetas y servicios de jardinería pensados para
+        convertir cada espacio en un lugar más verde, bonito y especial.
+      </p>
+
+      <div class="actions">
+        <a href="#plantas" class="btn btn-primary">🌱 Ver productos</a>
+
+        <a href="#" class="btn btn-secondary"
+           data-whatsapp="Hola Eco Ortiz 🌿, quiero solicitar una cotización.">
+          📄 Solicitar cotización
+        </a>
+      </div>
     </div>
 
-</div>
+    <!-- ESTE ES EL RECUADRO DE LA PORTADA -->
+    <div class="hero-card reveal">
+      <img
+        src="assets/portada-jardineria.png"
+        alt="Jardín realizado por Jardinería Eco Ortiz"
+      >
 
-<footer class="footer">
+      <div class="hero-label">
+        <div class="label-icon">🌿</div>
+        <div>
+          <strong>Eco Ortiz</strong>
+          <span>Soluciones verdes para hogares, empresas y momentos especiales.</span>
+        </div>
+      </div>
+    </div>
 
-    © 2026. Todos los derechos reservados |
-    Jardinería Eco Ortiz
+  </section>
 
+  <!-- PLANTAS -->
+  <section id="plantas" class="soft">
+    <div class="container">
+      <div class="section-head reveal">
+        <div>
+          <div class="eyebrow">🪴 Productos</div>
+          <h2>Plantas para llenar de vida tu espacio.</h2>
+        </div>
+        <p>
+          Descubre plantas ornamentales y opciones decorativas para hogares,
+          oficinas y espacios especiales.
+        </p>
+      </div>
+
+      <div class="cards">
+
+        <article class="card reveal">
+          <div class="card-img">
+            <img src="assets/anthurium-rojo.png" alt="Anthurium Rojo">
+          </div>
+          <div class="card-body">
+            <h3>Anthurium Rojo</h3>
+            <p>Planta ornamental con flores intensas y gran presencia.</p>
+            <br>
+            <button class="btn btn-primary" data-product="Anthurium Rojo">
+              Consultar
+            </button>
+          </div>
+        </article>
+
+        <article class="card reveal">
+          <div class="card-img">
+            <img src="assets/abono-eco.png" alt="Combo Eco Ortiz">
+          </div>
+          <div class="card-body">
+            <h3>Abono Eco</h3>
+            <p>Una combinación lista para decorar o regalar.</p>
+            <br>
+            <button class="btn btn-primary" data-product="Combo Eco">
+              Consultar
+            </button>
+          </div>
+        </article>
+
+        <article class="card reveal">
+          <div class="card-img">
+            <img src="assets/ornamentales.png" alt="Planta ornamental">
+          </div>
+          <div class="card-body">
+            <h3>Plantas ornamentales</h3>
+            <p>Opciones para interiores y exteriores.</p>
+            <br>
+            <button class="btn btn-primary" data-product="Plantas ornamentales">
+              Consultar
+            </button>
+          </div>
+        </article>
+
+        <article class="card reveal">
+          <div class="card-img">
+            <img src="assets/Macetas-eco.png" alt="Maceta y planta">
+          </div>
+          <div class="card-body">
+            <h3>Macetas & combos</h3>
+            <p>Combina tus plantas con una presentación especial.</p>
+            <br>
+            <button class="btn btn-primary" data-product="Macetas y combos">
+              Consultar
+            </button>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FLORES -->
+  <section id="flores">
+    <div class="container flowers">
+
+      <div class="flower-photo reveal">
+        <img src="assets/ramo-flores.png" alt="Flores de Eco Ortiz">
+      </div>
+
+      <div class="reveal">
+        <div class="eyebrow">🌹 Flores & regalos</div>
+        <h2>Flores que dicen lo que sientes.</h2>
+
+        <p class="hero-copy">
+          Estamos incorporando ramos de flores y rosas para cumpleaños,
+          aniversarios, agradecimientos y momentos especiales.
+        </p>
+
+        <div class="flower-list">
+          <div>🌹 Ramo de rosas</div>
+          <div>💐 Ramo personalizado</div>
+          <div>🎁 Flores para regalo</div>
+          <div>🌿 Detalles especiales</div>
+        </div>
+
+        <a href="#" class="btn btn-primary"
+           data-whatsapp="Hola Eco Ortiz 🌹, quiero consultar por los ramos de flores.">
+          Pedir un ramo
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- JARDINERÍA -->
+  <section id="jardineria" class="soft">
+    <div class="container">
+      <div class="section-head reveal">
+        <div>
+          <div class="eyebrow">🌿 Servicios</div>
+          <h2>Jardinería para espacios que quieres disfrutar.</h2>
+        </div>
+        <p>
+          Mantenimiento, poda, abonado, fumigación e instalación de plantas
+          ornamentales.
+        </p>
+      </div>
+
+      <div class="cards">
+        <article class="card reveal">
+          <div class="card-body">
+            <div style="font-size:35px">🌿</div>
+            <h3>Mantenimiento</h3>
+            <p>Cuidado preventivo y correctivo de áreas verdes.</p>
+          </div>
+        </article>
+
+        <article class="card reveal">
+          <div class="card-body">
+            <div style="font-size:35px">✂️</div>
+            <h3>Poda</h3>
+            <p>Trabajos de poda y acondicionamiento según cada espacio.</p>
+          </div>
+        </article>
+
+        <article class="card reveal">
+          <div class="card-body">
+            <div style="font-size:35px">🌱</div>
+            <h3>Abonado</h3>
+            <p>Aplicación de abonos para mantener tus plantas.</p>
+          </div>
+        </article>
+
+        <article class="card reveal">
+          <div class="card-body">
+            <div style="font-size:35px">🪴</div>
+            <h3>Instalación</h3>
+            <p>Selección e instalación de plantas ornamentales.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROYECTOS -->
+  <section id="proyectos">
+    <div class="container">
+      <div class="section-head reveal">
+        <div>
+          <div class="eyebrow">✨ Proyectos</div>
+          <h2>El resultado habla por nosotros.</h2>
+        </div>
+        <p>
+          Mostramos trabajos reales para que puedas conocer la calidad y el
+          proceso de Eco Ortiz.
+        </p>
+      </div>
+
+      <div class="cards">
+        <article class="card reveal">
+          <div class="card-img">
+            <img src="assets/mantenimiento3.png" alt="Proyecto de jardinería">
+          </div>
+          <div class="card-body">
+            <h3>Áreas verdes</h3>
+            <p>Diseño, mantenimiento y acondicionamiento de espacios.</p>
+          </div>
+        </article>
+
+        <article class="card reveal">
+          <div class="card-img">
+            <img src="assets/Mantenimiento1.png" alt="Jardín Eco Ortiz">
+          </div>
+          <div class="card-body">
+            <h3>Espacios exteriores</h3>
+            <p>Transformamos jardines para hacerlos más agradables.</p>
+          </div>
+        </article>
+
+        <article class="card reveal">
+          <div class="card-img">
+            <img src="assets/Mantenimiento2.png" alt="Mantenimiento de jardín">
+          </div>
+          <div class="card-body">
+            <h3>Mantenimiento</h3>
+            <p>Cuidado periódico para conservar tus áreas verdes.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOBRE ECO ORTIZ -->
+  <section id="nosotros" class="about-section">
+    <div class="container">
+      <div class="about-panel reveal">
+        <div class="about-left">
+          <div class="about-pill">Sobre Eco Ortiz</div>
+          <h2>Una familia detrás de<br>cada espacio verde.</h2>
+        </div>
+
+        <div class="about-right">
+          <div class="about-stars" aria-label="Eco Ortiz">★ ★ ★ ★ ★</div>
+
+          <blockquote>
+            “Queremos que cada cliente reciba más que un producto o un
+            servicio: una solución pensada para su espacio y una atención
+            cercana.”
+          </blockquote>
+
+          <p>Jardinería Eco Ortiz · Lima</p>
+        </div>
+      </div>
+    </div>
+  </section>
+<!-- HABLEMOS -->
+  <section id="contacto" class="contact-socials">
+    <div class="container contact-grid reveal">
+
+      <div class="contact-intro">
+        <div class="eyebrow">📲 Hablemos</div>
+
+        <h2>Cuéntanos qué<br>necesitas.</h2>
+
+        <p>
+          ¿Buscas plantas, flores, macetas o un servicio de jardinería?
+          Escríbenos y te ayudamos.
+        </p>
+
+        <a class="btn btn-primary"
+           href="#"
+           data-whatsapp="Hola Eco Ortiz 🌿, quiero solicitar una cotización.">
+          💬 Hablar por WhatsApp
+        </a>
+      </div>
+
+      <div class="contact-card">
+
+        <a class="contact-row"
+           href="https://wa.me/51997468890"
+           target="_blank"
+           rel="noopener noreferrer">
+          <span class="contact-icon">📱</span>
+          <span>
+            <strong>WhatsApp</strong>
+            <small>Pedidos y cotizaciones</small>
+          </span>
+        </a>
+
+        <a class="contact-row"
+           href="https://www.instagram.com/jardineriaecoortiz/"
+           target="_blank"
+           rel="noopener noreferrer">
+          <span class="contact-icon">📷</span>
+          <span>
+            <strong>Instagram</strong>
+            <small>@jardineriaecoortiz</small>
+          </span>
+        </a>
+
+        <a class="contact-row"
+           href="https://www.tiktok.com/@jardineriaecoortiz"
+           target="_blank"
+           rel="noopener noreferrer">
+          <span class="contact-icon">🎵</span>
+          <span>
+            <strong>TikTok</strong>
+            <small>@jardineriaecoortiz</small>
+          </span>
+        </a>
+
+        <a class="contact-row"
+           href="https://www.facebook.com/jardineriaecoortiz/"
+           target="_blank"
+           rel="noopener noreferrer">
+          <span class="contact-icon">f</span>
+          <span>
+            <strong>Facebook</strong>
+            <small>Jardinería Eco Ortiz</small>
+          </span>
+        </a>
+
+        <a class="contact-row"
+           href="tel:+51997468890">
+          <span class="contact-icon">☎</span>
+          <span>
+            <strong>Teléfono</strong>
+            <small>+51 980 041 926</small>
+          </span>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container footer-inner">
+    <span>© <span id="year"></span> Jardinería Eco Ortiz</span>
+    <span>
+      <a href="https://www.instagram.com/jardineriaecoortiz/" target="_blank" rel="noopener noreferrer">Instagram</a>
+      ·
+      <a href="https://www.tiktok.com/@jardineriaecoortiz" target="_blank" rel="noopener noreferrer">TikTok</a>
+      ·
+      <a href="https://www.facebook.com/jardineriaecoortiz/" target="_blank" rel="noopener noreferrer">Facebook</a>
+    </span>
+  </div>
 </footer>
 
-<script>
+<a href="#" class="whatsapp"
+   aria-label="Contactar por WhatsApp"
+   data-whatsapp="Hola Eco Ortiz 🌿, quiero información.">
+  💬
+</a>
 
-function verDetalle(
-    img,
-    categoria,
-    titulo,
-    precio,
-    descripcion
-){
-
-    // ocultar TODAS las secciones
-    document.querySelectorAll(".seccion")
-    .forEach(sec => {
-        sec.style.display = "none";
-    });
-
-    // ocultar portada
-    document.getElementById("portada")
-    .style.display = "none";
-
-    // mostrar detalle
-    document.getElementById("detalle")
-    .style.display = "block";
-
-    // llenar datos
-    document.getElementById("detalle-img").src = img;
-
-    document.getElementById("detalle-categoria")
-    .textContent = categoria;
-
-    document.getElementById("detalle-titulo")
-    .textContent = titulo;
-
-    document.getElementById("detalle-precio")
-    .textContent = precio;
-
-    document.getElementById("detalle-desc")
-    .innerHTML = descripcion;
-
-    // whatsapp
-    let mensaje =
-    `Hola, quiero información sobre: ${titulo} (${precio})`;
-
-    let url =
-    `https://wa.me/51997468890?text=${encodeURIComponent(mensaje)}`;
-
-    document.getElementById("btn-whatsapp")
-    .href = url;
-}   
-
-function filtrar(categoria, btn){
-
-    let secciones =
-    document.querySelectorAll(".seccion");
-
-    let botones =
-    document.querySelectorAll(".btn");
-
-    // ocultar info
-    document.querySelectorAll(".info-seccion")
-    .forEach(sec=>{
-        sec.style.display = "none";
-    });
-
-    // quitar active
-    botones.forEach(b =>
-        b.classList.remove("active")
-    );
-
-    // agregar active
-    if(btn){
-        btn.classList.add("active");
-    }
-
-    // ocultar detalle
-    document.getElementById("detalle")
-    .style.display = "none";
-
-    // mostrar portada
-    document.getElementById("portada")
-    .style.display = "block";
-
-    // mostrar/ocultar secciones
-    secciones.forEach(sec => {
-
-        if(categoria === "inicio"){
-
-            sec.style.display = "block";
-
-        }else{
-
-            sec.style.display =
-            sec.id === categoria
-            ? "block"
-            : "none";
-        }
-
-    });
-
-} 
-
-
-
-function scrollCategoria(id, direccion){
-
-    const slider =
-    document.getElementById(id);
-
-    slider.scrollBy({
-
-        left: direccion * 320,
-
-        behavior: "smooth"
-
-    });
-
-}
-
-function mostrarInfo(id){
-
-    // ocultar secciones productos
-    document.querySelectorAll(".seccion")
-    .forEach(sec=>{
-        sec.style.display="none";
-    });
-
-    // ocultar info
-    document.querySelectorAll(".info-seccion")
-    .forEach(sec=>{
-        sec.style.display="none";
-    });
-
-    // ocultar detalle
-    document.getElementById("detalle")
-    .style.display="none";
-
-    // ocultar portada
-    document.getElementById("portada")
-    .style.display="none";
-
-    // mostrar info seleccionada
-    document.getElementById(id)
-    .style.display="block";
-}
-
-</script>
-
+<script src="script.js"></script>
 </body>
 </html>
